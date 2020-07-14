@@ -15,5 +15,6 @@ dbConfig = {
 	'db_port': 27017,
 	'db_user': None,
 	'db_pwd': None,
+	'db_maxData': 10000,
 	'db_table': 'proxiesPool'
 }

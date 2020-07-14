@@ -11,6 +11,8 @@ __author__ = 'lemoncc'
 
 from spider.spider import Spider
 from finish_.finish_ import Finish_
+from helper.common import common, dbConfig
 
-spider = Spider().run()
+if common.dbClient.getNumber() <= dbConfig['db_maxData']:
+	spider = Spider().run()
 finish_ = Finish_().run()

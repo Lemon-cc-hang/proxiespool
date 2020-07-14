@@ -1,6 +1,10 @@
 # proxiespool
 代理池 存储进入mongodb里
 
+> 下载
+```shell
+git clone https://github.com/Lemon-cc-hang/proxiespool.git
+```
 
 
 安装依赖 `pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/`

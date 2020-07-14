@@ -14,8 +14,9 @@ from pymongo import MongoClient
 
 class MongodbClient(object):
 
-	def __init__(self, table, host, port, **kwargs):
+	def __init__(self, table, host, port, max_data, **kwargs):
 		self.__collection = table
+		self._max_data = max_data
 		self._client = MongoClient(host, port, connect=False, **kwargs)
 		self._db = self._client.proxy
 
@@ -23,12 +24,13 @@ class MongodbClient(object):
 		self.__collection = table
 
 	def insert(self, _dict):
-		if _dict is not None:
-			_dict['score'] = 10
-			if not self.__isExist(_dict):
-				self._db[self.__collection].insert_one(_dict)
-			else:
-				self.__score_add(_dict)
+		if self.getNumber() <= self._max_data:
+			if _dict is not None:
+				_dict['score'] = 10
+				if not self.__isExist(_dict):
+					self._db[self.__collection].insert_one(_dict)
+				else:
+					self.__score_add(_dict)
 
 	def clean_database(self):
 		self._client.drop_database('proxy')

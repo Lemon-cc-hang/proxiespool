@@ -25,9 +25,10 @@ class DbClient(object):
 	sort_(): 排序
 	"""
 
-	def __init__(self, db_host='localhost', db_port=27017, db_user=None, db_pwd=None, db_table='proxiesPool'):
+	def __init__(self, db_host='localhost', db_port=27017, db_user=None, db_pwd=None, db_maxData=10000, db_table='proxiesPool'):
 		self.client = MongodbClient(host=db_host,
 		                            port=db_port,
+		                            max_data=db_maxData,
 		                            username=db_user,
 		                            password=db_pwd,
 		                            table=db_table)
