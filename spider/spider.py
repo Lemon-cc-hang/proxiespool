@@ -13,7 +13,7 @@ __author__ = 'lemoncc'
 from multiprocessing import Process
 from spider.getPages import GetPages
 from helper.scheduler import scheduler
-
+from threading import Thread
 
 class Spider(object):
 
@@ -50,18 +50,27 @@ class Spider(object):
 		for url in self.jiangxianli_urls:
 			scheduler.runParseHtml().parse_html_kuaidaili(scheduler.runGetHtml().get(url))
 
+	def collection(self):
+		t1 = Thread(target=self.ip89, name='ip89')
+		t2 = Thread(target=self.ip3366, name='ip3366')
+		t3 = Thread(target=self.jiangxianli, name='jiangxianli')
+		t1.start()
+		t2.start()
+		t3.start()
+		t1.join()
+		t2.join()
+		t3.join()
+
 	def run(self):
 		p = Process(target=self.xiLaDaiLi, name='xiLaDaiLi')
 		p1 = Process(target=self.kuaiDaiLi, name='kuaiDaiLi')
-		p2 = Process(target=self.ip89, name='ip89')
+		p2 = Process(target=self.collection, name='others')
 		p.start()
 		p1.start()
 		p2.start()
 		p.join()
 		p1.join()
-		p2 = Process(target=self.ip3366, name='ip3366')
-		p2.start()
-		p2 = Process(target=self.jiangxianli, name='jiangxianli')
-		p2.start()
 		p2.join()
-
+		p.close()
+		p1.close()
+		p2.close()
