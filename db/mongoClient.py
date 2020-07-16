@@ -26,8 +26,8 @@ class MongodbClient(object):
 	def insert(self, _dict):
 		if self.getNumber() <= self._max_data:
 			if _dict is not None:
-				_dict['score'] = 10
 				if not self.__isExist(_dict):
+					_dict['score'] = 10
 					self._db[self.__collection].insert_one(_dict)
 				else:
 					self.__score_add(_dict)
