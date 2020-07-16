@@ -92,3 +92,6 @@ class MongodbClient(object):
 	def getAll(self):
 		results = self._db[self.__collection].find({'score': {'$gt': 0}})
 		return [{'http': r['http'], 'https': r['https']} for r in results]
+
+	def find(self, _dict):
+		return self._db[self.__collection].find(_dict)

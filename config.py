@@ -16,5 +16,6 @@ dbConfig = {
 	'db_user': None,
 	'db_pwd': None,
 	'db_maxData': 10000,
-	'db_table': 'proxiesPool'
+	'db_table': 'proxiesPool',
+	'maxPoolSize': None
 }

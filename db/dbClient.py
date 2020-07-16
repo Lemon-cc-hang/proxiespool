@@ -25,13 +25,14 @@ class DbClient(object):
 	sort_(): 排序
 	"""
 
-	def __init__(self, db_host='localhost', db_port=27017, db_user=None, db_pwd=None, db_maxData=10000, db_table='proxiesPool'):
+	def __init__(self, db_host='localhost', db_port=27017, db_user=None, db_pwd=None, db_maxData=10000, db_table='proxiesPool', maxPoolSize=None):
 		self.client = MongodbClient(host=db_host,
 		                            port=db_port,
 		                            max_data=db_maxData,
 		                            username=db_user,
 		                            password=db_pwd,
-		                            table=db_table)
+		                            table=db_table,
+		                            maxPoolSize=maxPoolSize)
 
 	def get_proxies(self, num=1):
 		return self.client.get_proxies(num)
@@ -59,3 +60,6 @@ class DbClient(object):
 
 	def getAll(self):
 		return self.client.getAll()
+
+	def find(self, _dict):
+		return self.client.find(_dict)
