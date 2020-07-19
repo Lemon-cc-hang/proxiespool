@@ -42,7 +42,7 @@ class MongodbClient(object):
 		return self._db[self.__collection].count()
 
 	def delete(self, _dict):
-		self._db[self.__collection].delete_one(_dict)
+		return self._db[self.__collection].delete_one(_dict)
 
 	def __score_add(self, __dict):
 		result = self.__find(__dict)

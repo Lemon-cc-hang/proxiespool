@@ -14,6 +14,7 @@ from random import choice
 from requests.models import Response
 import time
 from helper.common import common
+from config import flaskApiConfig
 
 
 class GetHtml(object):
@@ -37,20 +38,10 @@ class GetHtml(object):
 		        'Connection': 'keep-alive',
 		        'Accept-Language': 'zh-CN,zh;q=0.8'}
 
-	def getProxies(self):
-		if common.dbClient.getNumber() > 100:
-			proxies = common.dbClient.get_proxies(10)
-			if proxies is None:
-				return None
-			else:
-				return choice(proxies)
-		else:
-			return None
-
 	def get(self, url, retry_time=3, retry_interval=5, timeout=5, *args, **kwargs):
 		headers = self.__header()
 		while True:
-			proxies = self.getProxies()
+			proxies = requests.get(f'http://{flaskApiConfig["host"]}:{flaskApiConfig["port"]}/get_proxy').json()
 			common.logs.proxies_info(proxies)
 			try:
 				common.logs.scrap_info(url)

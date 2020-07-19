@@ -19,3 +19,12 @@ dbConfig = {
 	'db_table': 'proxiesPool',
 	'maxPoolSize': None
 }
+
+class BaseConfig(object):
+	DEBUG = False
+	TESTING = False
+
+flaskApiConfig = {
+	'host': 'localhost',
+	'port': 5000
+}

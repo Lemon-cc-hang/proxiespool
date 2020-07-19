@@ -25,9 +25,19 @@ python main.py
 bash start.sh
 ```
 
+> api接口
+
+第一次启动运行 `bash startApi.sh`
+
+| api         | method | description                |
+| ----------- | ------ | -------------------------- |
+| /           | GET    | 介绍                       |
+| /get_proxy  | GET    | 随机获取分值最高的一个代理 |
+| /get_all    | GET    | 获取所有代理               |
+| /get_number | GET    | 获取代理数量               |
 
 
-构建代理池 , 还没有设计接口
+
 
 >  取出代理
 
