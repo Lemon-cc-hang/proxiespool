@@ -9,7 +9,6 @@
 """
 __author__ = 'lemoncc'
 
-
 from multiprocessing import Process
 from spider.getPages import GetPages
 from helper.scheduler import scheduler

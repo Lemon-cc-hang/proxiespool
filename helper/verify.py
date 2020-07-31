@@ -13,12 +13,13 @@ __author__ = 'lemoncc'
 import requests
 from concurrent.futures import ThreadPoolExecutor
 from helper.common import common
+from config import webConfig
 
 
 class Verify(object):
 
 	def __verify_proxy(self, proxies):
-		html = requests.get('http://www.baidu.com', proxies=proxies, timeout=3)
+		html = requests.get(webConfig, proxies=proxies, timeout=3)
 		try:
 			if html.status_code == 200:
 				common.logs.store_info(proxies)

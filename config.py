@@ -9,7 +9,7 @@
 """
 __author__ = 'lemoncc'
 
-
+# mongoDB设置
 dbConfig = {
 	'db_host':'localhost',
 	'db_port': 27017,
@@ -20,11 +20,16 @@ dbConfig = {
 	'maxPoolSize': None
 }
 
+# Flask设置
 class BaseConfig(object):
 	DEBUG = False
 	TESTING = False
 
 flaskApiConfig = {
-	'host': 'localhost',
+	# 改成自己的网络区段 或者 localhost
+	'host': '0.0.0.0',
 	'port': 5000
 }
+
+# 需要验证的网址
+webConfig = 'http://www.baidu.com'

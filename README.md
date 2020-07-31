@@ -9,9 +9,11 @@ git clone https://github.com/Lemon-cc-hang/proxiespool.git
 
 安装依赖 `pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/`
 
+> 修改基本设置
 
+在`config.py`中修改
 
-运行:
+> 运行
 
 进入目录下
 
@@ -63,6 +65,32 @@ bash start.sh
 
 1. 保证后面的高分代理都是高可用的
 2. 防止一次的 代理连接失效 而删除代理
+
+
+
+> 使用docker运行
+
+1. 使用dockerfile 构造镜像
+
+    ```bash
+    docker build -t proxiespool .
+    ```
+
+2. 然后先运行api
+
+    这里的network需要自己构造
+
+    ```shell
+    docker run -p 5000:5000 --name Api --network mynet -d proxiespool
+    ```
+
+3. 然后运行爬虫
+
+    ```shell
+    docker run --name proxies -d proxiespool sh start.sh
+    ```
+
+    
 
 
 
@@ -126,11 +154,11 @@ bash start.sh
 
 15. Dockerfile:
 
-    由于本人学艺不精, 生成docker镜像时候频频出错, 有大佬可以指点一下
+    完善
 
 16. main.py  start.sh:
 
-    启动
+     启动
 
 
 
